@@ -1,14 +1,26 @@
-// Create variable for rock
-let rock = "Rock"
-// Create variable for scissors
-let scissors = "Scissors"
-// Create variable for paper
-let paper = "Paper"
-// Ask user for prompt for their choice
-let playerChoice = prompt("Rock, Paper, or Scissors?").toUpperCase();
-// Check to make sure player inputs RPS
-if (!(playerChoice == "ROCK" || playerChoice == "PAPER" || playerChoice == "SCISSORS")) {
-    alert("Invalid, please enter Rock, Paper, or Scissors")
+
+
+
+
+//Runs game
+game();
+
+
+
+ 
+
+
+
+//prompts user for input, then checks if valid input
+function playerPlay() {
+    while (true) {
+        let playerPlay = prompt("Rock, Paper, or Scissors?").toUpperCase();
+        if (!(playerPlay == "ROCK" || playerPlay == "PAPER" || playerPlay == "SCISSORS")) {
+            alert("Invalid, please enter Rock, Paper, or Scissors")
+        } else {
+            return playerPlay;
+        } 
+    }
 }
 
 
@@ -33,9 +45,63 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-console.log(computerPlay());
-// Calculate who won
-// If won, alert the player that they won
-// else, alert the player that they lost
+// Calculate who won and alert player result
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == computerSelection) {
+        alert("Tie game!")
+        return "Tie";
+    } else if (playerSelection == "ROCK") {
+        if (computerSelection == "PAPER") {
+            alert("You Lose! Paper beats Rock")
+            return "Lose"
+        } else {
+            alert("You Win! Rock beats Scissors")
+            return "Win"
+        }
+    } else if (playerSelection == "PAPER") {
+        if (computerSelection == "SCISSORS") {
+            alert("You Lose! Scissors beats Paper")
+            return "Lose"
+        } else {
+            alert("You Win! Paper beats Rock")
+            return "Win"
+        }
+    } else {
+        if (computerSelection == "ROCK") {
+            alert("You Lose! Rock beats Scissors")
+            return "Lose"
+        } else {
+            alert("You win! Scissors beats Paper")
+            return "Win"
+        }
+    }
+}
+
+
+
+
 // Make a function that loops the game through five rounds
-// Keep track of the score
+function game() {
+    //initialize score
+    let p1Score = 0;
+    let cpuScore = 0;
+    //loop game 5 times
+    for (let i = 0; i < 5; i++) {
+        //Generate variables each round
+        const playerSelection = playerPlay();
+        const computerSelection = computerPlay();
+        let result = playRound(playerSelection, computerSelection);
+        //Update score depending on result
+        switch(result) {
+            case "Tie":
+                break;
+            case "Lose":
+                ++cpuScore;
+                break;
+            case "Win":
+                ++p1Score;
+                break;
+        }
+        alert(`Score: Player: ${p1Score}, Computer: ${cpuScore}`)
+    }
+}
