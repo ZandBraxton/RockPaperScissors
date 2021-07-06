@@ -10,16 +10,30 @@ let playerChoice = prompt("Rock, Paper, or Scissors?").toUpperCase();
 if (!(playerChoice == "ROCK" || playerChoice == "PAPER" || playerChoice == "SCISSORS")) {
     alert("Invalid, please enter Rock, Paper, or Scissors")
 }
-// Convert RPS to int, make it case-insensitive
 
-
-
-
-
-console.log(playerChoice);
 
 // Create AI to randomly play one of the three variables
+function computerPlay() {
+    let rpsValue = randomNumber(0, 3);
+    switch(rpsValue) {
+        case 0:
+            return "ROCK";
+            break;
+        case 1:
+            return "PAPER";
+            break;
+        case 2:
+            return "SCISSORS";
+            break;
+    }       
+}
 
+//Make function to get random number between 1-3
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+}
+
+console.log(computerPlay());
 // Calculate who won
 // If won, alert the player that they won
 // else, alert the player that they lost
