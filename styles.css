@@ -14,7 +14,7 @@ html {
 
 
 .container {
-    height: 100vh;
+    padding-top: 300px;
     width: auto;
     display: flex;
     justify-content: center;
@@ -49,4 +49,9 @@ button {
 
 button:hover {
     border: 5px solid black;
+}
+
+.score {
+    display: flex;
+    justify-content: space-evenly;
 }

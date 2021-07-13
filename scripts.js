@@ -1,16 +1,17 @@
-//Runs game
-// game();
 
-//prompts user for input, then checks if valid input
-function playerPlay() {
-    while (true) {
-        let playerPlay = prompt("Rock, Paper, or Scissors?").toUpperCase();
-        if (!(playerPlay == "ROCK" || playerPlay == "PAPER" || playerPlay == "SCISSORS")) {
-            alert("Invalid, please enter Rock, Paper, or Scissors")
-        } else {
-            return playerPlay;
-        } 
-    }
+
+
+
+let p1ScoreVar = 0;
+let cpuScoreVar = 0;
+
+const p1Score = document.querySelector('#p1Score')
+const cpuScore = document.querySelector('#cpuScore')
+score()
+
+function score() {
+    p1Score.textContent = `Player 1: ${p1ScoreVar}`
+    cpuScore.textContent= `Computer: ${cpuScoreVar}`
 }
 
 const btnArray = document.querySelectorAll('button');
@@ -18,7 +19,21 @@ btnArray.forEach((button) => {
     button.addEventListener('click', () => {
         const playerSelection = button.id.toUpperCase()
         const computerSelection = computerPlay()
-        playRound(playerSelection, computerSelection)
+        let result = playRound(playerSelection, computerSelection);
+        //Update score depending on result
+        switch(result) {
+            case "Tie":
+                break;
+            case "Lose":
+                cpuScoreVar += 1;
+                score()
+                break;
+            case "Win":
+                p1ScoreVar += 1;
+                score()
+                break;
+                
+        }
     });
 });
 
