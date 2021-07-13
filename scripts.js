@@ -13,6 +13,14 @@ function playerPlay() {
     }
 }
 
+const btnArray = document.querySelectorAll('button');
+btnArray.forEach((button) => {
+    button.addEventListener('click', () => {
+        const playerSelection = button.id.toUpperCase()
+        const computerSelection = computerPlay()
+        playRound(playerSelection, computerSelection)
+    });
+});
 
 
 
