@@ -1,15 +1,5 @@
-
-
-
-
 //Runs game
-game();
-
-
-
- 
-
-
+// game();
 
 //prompts user for input, then checks if valid input
 function playerPlay() {
@@ -22,6 +12,8 @@ function playerPlay() {
         } 
     }
 }
+
+
 
 
 // Create AI to randomly play one of the three variables
@@ -80,28 +72,28 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-// Make a function that loops the game through five rounds
-function game() {
-    //initialize score
-    let p1Score = 0;
-    let cpuScore = 0;
-    //loop game 5 times
-    for (let i = 0; i < 5; i++) {
-        //Generate variables each round
-        const playerSelection = playerPlay();
-        const computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-        //Update score depending on result
-        switch(result) {
-            case "Tie":
-                break;
-            case "Lose":
-                ++cpuScore;
-                break;
-            case "Win":
-                ++p1Score;
-                break;
-        }
-        alert(`Score: Player: ${p1Score}, Computer: ${cpuScore}`)
-    }
-}
+// // Make a function that loops the game through five rounds
+// function game() {
+//     //initialize score
+//     let p1Score = 0;
+//     let cpuScore = 0;
+//     //loop game 5 times
+//     for (let i = 0; i < 5; i++) {
+//         //Generate variables each round
+//         const playerSelection = playerPlay();
+//         const computerSelection = computerPlay();
+//         let result = playRound(playerSelection, computerSelection);
+//         //Update score depending on result
+//         switch(result) {
+//             case "Tie":
+//                 break;
+//             case "Lose":
+//                 ++cpuScore;
+//                 break;
+//             case "Win":
+//                 ++p1Score;
+//                 break;
+//         }
+//         alert(`Score: Player: ${p1Score}, Computer: ${cpuScore}`)
+//     }
+// }

@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    background-color: grey;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+
+.container {
+    height: 100vh;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 300px;
+    height: 200px;
+}
+
+.rock {
+    margin: 0px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgb(192, 35, 35);
+}
+
+.paper {
+    margin: 0px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgb(55, 55, 214);
+}
+
+.scissors {
+    margin: 0px 20px;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: rgb(31, 170, 31);
+}
+
+button:hover {
+    border: 5px solid black;
+}
