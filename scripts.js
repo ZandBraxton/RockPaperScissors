@@ -1,14 +1,48 @@
 //Initialize
 let p1ScoreVar = 0;
 let cpuScoreVar = 0;
+let playAgainVar = false;
 const p1Score = document.querySelector('#p1Score')
 const cpuScore = document.querySelector('#cpuScore')
 const log = document.querySelector('#log')
+const btnArray = document.querySelectorAll('button');
+rpsContent(btnArray)
 log.textContent = "Make a selection to play!"
 rules.textContent = "First to 5 wins!"
 gameStart()
 score()
 
+//Start game
+function gameStart () {
+    btnArray.forEach((button) => {
+        button.addEventListener('click', () => {
+            if (playAgainVar === false) {
+                const playerSelection = button.id.toUpperCase()
+                const computerSelection = computerPlay()
+                let result = playRound(playerSelection, computerSelection);
+                //Update score depending on result
+                switch(result) {
+                    case "Tie":
+                        break;
+                    case "Lose":
+                        cpuScoreVar += 1;
+                        score()
+                        break;
+                    case "Win":
+                        p1ScoreVar += 1;
+                        score()
+                        break; 
+                }
+            } else if (playAgainVar === true) {
+                restart()
+                score()
+                rpsContent(btnArray)  
+                playAgainVar = false;
+            }
+            checkResults(p1ScoreVar, cpuScoreVar)
+        });
+    });
+}
 
 
 function restart () {
@@ -22,42 +56,23 @@ function score() {
     cpuScore.textContent= `Computer: ${cpuScoreVar}`
 }
 
-function gameStart () {
-    const btnArray = document.querySelectorAll('button');
+function rpsContent(btnArray) {
     for (let i = 0; i <= btnArray.length - 1; i++) {
         switch (i) {
             case 0:
                 btnArray[i].textContent = "Rock";
+                btnArray[i].classList.remove('playAgain')
                 break;
             case 1:
                 btnArray[i].textContent = "Paper";
+                btnArray[i].classList.remove('playAgain')
                 break;
             case 2:
                 btnArray[i].textContent = "Scissors";
+                btnArray[i].classList.remove('playAgain')
                 break;
         }
     }
-    btnArray.forEach((button) => {
-        button.addEventListener('click', () => {
-            const playerSelection = button.id.toUpperCase()
-            const computerSelection = computerPlay()
-            let result = playRound(playerSelection, computerSelection);
-            //Update score depending on result
-            switch(result) {
-                case "Tie":
-                    break;
-                case "Lose":
-                    cpuScoreVar += 1;
-                    score()
-                    break;
-                case "Win":
-                    p1ScoreVar += 1;
-                    score()
-                    break;     
-            }
-            checkResults(p1ScoreVar, cpuScoreVar)
-        });
-    });
 }
 
 // Create AI to randomly play one of the three variables
@@ -116,23 +131,18 @@ function playRound(playerSelection, computerSelection) {
 function checkResults (p1ScoreVar, cpuScoreVar) {
     if (p1ScoreVar === 5) {
         log.textContent = "Congratulations! You win!"
-        playAgain()
+        playAgain(btnArray)
     } else if (cpuScoreVar === 5) {
         log.textContent = "Game Over"
-        playAgain()
+        playAgain(btnArray)
     }
 }
 
-function playAgain() {
-    const btnArray = document.querySelectorAll('button');
+
+function playAgain(btnArray) {
     for (let i = 0; i <= btnArray.length - 1; i++) {
         btnArray[i].textContent = "Play Again"
+        btnArray[i].classList.add('playAgain')
+        playAgainVar = true;
     }
-    btnArray.forEach((button) => {
-    button.addEventListener('click', () => {
-        gameStart()
-        restart()
-        score()
-        });
-    });
 }

@@ -20,6 +20,10 @@ html {
     align-items: center;
 }
 
+.playAgain {
+    background: white !important;
+}
+
 button {
     width: 300px;
     height: 200px;
